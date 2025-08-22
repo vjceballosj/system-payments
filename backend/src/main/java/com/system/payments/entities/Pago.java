@@ -15,22 +15,26 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "pago")
 public class Pago {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
 
     private LocalDate fecha;
 
     private double cantidad;
 
+    @Enumerated(EnumType.STRING)
     private TypePago type;
 
+    @Enumerated(EnumType.STRING)
     private PagoStatus status;
 
     private String file;
 
     @ManyToOne
+    @JoinColumn(name = "estudiante_id")
     private Estudiante estudiante;
 }

@@ -2,5 +2,5 @@ package com.system.payments.enums;
 
 public enum TypePago {
 
-    EFECTIVO, CEHQUE, PSE, DEPOSITO
+    EFECTIVO, CHEQUE, PSE, DEPOSITO
 }
