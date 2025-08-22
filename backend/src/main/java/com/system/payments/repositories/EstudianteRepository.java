@@ -11,5 +11,5 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, String> 
 
     Estudiante findByCodigo(String codigo);
 
-    List<Estudiante> findByProgramaID(String programaId);
+    List<Estudiante> findByProgramaId(String programaId);
 }

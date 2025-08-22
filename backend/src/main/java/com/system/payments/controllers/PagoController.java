@@ -42,7 +42,7 @@ public class PagoController {
 
     @GetMapping("/estudiantesPorPrograma")
     public List<Estudiante> listStudentsByProgram(@RequestParam String programaId){
-        return estudianteRepository.findByProgramaID(programaId);
+        return estudianteRepository.findByProgramaId(programaId);
     }
 
     @GetMapping("/pagos")
