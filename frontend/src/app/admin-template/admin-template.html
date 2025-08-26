@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <button mat-button>
+    <button mat-button (click)="myDrawer.toggle()">
         <mat-icon>menu</mat-icon>
     </button>
 
@@ -21,7 +21,7 @@
     <button mat-raised-button color="accent" routerLink="/login">Salir</button>
 </mat-toolbar>
 <mat-drawer-container>
-    <mat-drawer opened="true" mode="side" position="start">
+    <mat-drawer #myDrawer opened="true" mode="side" position="start">
         <mat-list>
             <mat-list-item>
                 <button mat-button routerLink="/dashboard">
@@ -44,7 +44,7 @@
         </mat-list>
     </mat-drawer>
     <mat-drawer-content>
-        <div style="min-height: 600px;">
+        <div style="min-height: 480px;">
             <router-outlet></router-outlet>
         </div>
     </mat-drawer-content>

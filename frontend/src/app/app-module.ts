@@ -18,6 +18,7 @@ import { Login } from './login/login';
 import { Pagos } from './pagos/pagos';
 import { Estudiantes } from './estudiantes/estudiantes';
 import { Dashboard } from './dashboard/dashboard';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { Dashboard } from './dashboard/dashboard';
     MatIconModule,
     MatMenuModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatCardModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

@@ -11,6 +11,7 @@ import { Profile } from './profile/profile';
 import { Estudiantes } from './estudiantes/estudiantes';
 
 const routes: Routes = [
+  {path: "", component:Login},
   {path: "home", component:Home},
   {path: "adminTemplate", component:AdminTemplate},
   {path: "dashboard", component:Dashboard},
