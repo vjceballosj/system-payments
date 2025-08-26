@@ -10,11 +10,27 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { Home } from './home/home';
+import { Profile } from './profile/profile';
+import { LoadEstudiantes } from './load-estudiantes/load-estudiantes';
+import { LoadPagos } from './load-pagos/load-pagos';
+import { Login } from './login/login';
+import { Pagos } from './pagos/pagos';
+import { Estudiantes } from './estudiantes/estudiantes';
+import { Dashboard } from './dashboard/dashboard';
 
 @NgModule({
   declarations: [
     App,
-    AdminTemplate
+    AdminTemplate,
+    Home,
+    Profile,
+    LoadEstudiantes,
+    LoadPagos,
+    Login,
+    Pagos,
+    Estudiantes,
+    Dashboard
   ],
   imports: [
     BrowserModule,
