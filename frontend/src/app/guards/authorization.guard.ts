@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class AuthGuard {
+export class AuthorizationGuard {
 
   constructor(private authService: Auth, private router: Router) {
 
@@ -12,11 +12,15 @@ export class AuthGuard {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.authService.isAuthenticated) {
-      return true;
+      let requiredRoles = route.data['roles'];
+      let userRoles = this.authService.roles;
+
+      for(let role of userRoles){
+        if(requiredRoles.includes(role)){
+          return true;
+        }
+      }
     }
-    else {
-      this.router.navigateByUrl('/login');
-      return false;
-    }
+    return false;
   }
 }
