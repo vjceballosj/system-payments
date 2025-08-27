@@ -9,12 +9,15 @@ import { Login } from './login/login';
 import { Pagos } from './pagos/pagos';
 import { Profile } from './profile/profile';
 import { Estudiantes } from './estudiantes/estudiantes';
+import { AuthGuard } from './guards/auth-guard';
 
 const routes: Routes = [
   { path: "", component: Login },
   { path: "login", component: Login },
   {
-    path: "admin", component: AdminTemplate, children: [
+    path: "admin", component: AdminTemplate, 
+    canActivate:[AuthGuard],
+    children: [
       { path: "home", component: Home },
       { path: "pagos", component: Pagos },
       { path: "dashboard", component: Dashboard },

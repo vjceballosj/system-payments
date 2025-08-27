@@ -22,6 +22,7 @@ import { MatCardModule } from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AuthGuard } from './guards/auth-guard';
 
 @NgModule({
   declarations: [
@@ -50,9 +51,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     ReactiveFormsModule
   ],
-  providers: [
-    provideBrowserGlobalErrorListeners()
-  ],
+  providers: [AuthGuard],
   bootstrap: [App]
 })
 export class AppModule { }
