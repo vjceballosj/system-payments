@@ -14,7 +14,7 @@ export class Pagos {
 
   public pagos: any;
   public dataSource: any;
-  public displayedColumns = ['id', 'fecha', 'cantidad', 'type', 'status', 'nombre'];
+  public displayedColumns = ['id', 'fecha', 'cantidad', 'type', 'status', 'nombres','apellidos'];
 
   /*
   - @ViewChild: decorador que permite acceder a un componente hijo del DOM
