@@ -11,16 +11,19 @@ import { Profile } from './profile/profile';
 import { Estudiantes } from './estudiantes/estudiantes';
 
 const routes: Routes = [
-  {path: "", component:Login},
-  {path: "home", component:Home},
-  {path: "adminTemplate", component:AdminTemplate},
-  {path: "dashboard", component:Dashboard},
-  {path: "estudiantes", component:Estudiantes},
-  {path: "loadEstudiantes", component:LoadEstudiantes},
-  {path: "loadPagos", component:LoadPagos},
-  {path: "login", component:Login},
-  {path: "pagos", component:Pagos},
-  {path: "profile", component:Profile}
+  { path: "", component: Login },
+  { path: "login", component: Login },
+  {
+    path: "admin", component: AdminTemplate, children: [
+      { path: "home", component: Home },
+      { path: "pagos", component: Pagos },
+      { path: "dashboard", component: Dashboard },
+      { path: "estudiantes", component: Estudiantes },
+      { path: "loadEstudiantes", component: LoadEstudiantes },
+      { path: "loadPagos", component: LoadPagos },
+      { path: "profile", component: Profile }
+    ]
+  },
 ];
 
 @NgModule({

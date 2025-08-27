@@ -8,7 +8,7 @@
     <button mat-button routerLink="/admin/home">Home</button>
     <button mat-button routerLink="/admin/profile">Perfil</button>
 
-    <button mat-button [matMenuTriggerFor] = "importMenu">
+    <button mat-button [matMenuTriggerFor]="importMenu">
         <mat-icon iconPositionEnd>keyboard_arrow_down</mat-icon>
         Importar
     </button>
@@ -18,28 +18,31 @@
         <button mat-menu-item routerLink="/admin/loadPagos">Cargar Pagos</button>
     </mat-menu>
 
-    <button mat-raised-button color="accent" routerLink="/login">Salir</button>
+    <button mat-button *ngIf="authService.isAuthenticated">
+    {{ authService.username }}
+    </button>
+    <button mat-raised-button color="accent" (click) = "logout()">Salir</button>
 </mat-toolbar>
 <mat-drawer-container>
     <mat-drawer #myDrawer opened="true" mode="side" position="start">
         <mat-list>
             <mat-list-item>
-                <button mat-button routerLink="/dashboard">
+                <button mat-button routerLink="/admin/dashboard">
                     <mat-icon>dashboard</mat-icon>
                     Dashboard
                 </button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-button routerLink="/estudiantes">
+                <button mat-button routerLink="/admin/estudiantes">
                     <mat-icon>dashboard</mat-icon>
                     Estudiantes
-                    </button>
+                </button>
             </mat-list-item>
             <mat-list-item>
-                <button mat-button routerLink="/pagos">
+                <button mat-button routerLink="/admin/pagos">
                     <mat-icon>dashboard</mat-icon>
                     Pagos
-                    </button>
+                </button>
             </mat-list-item>
         </mat-list>
     </mat-drawer>
