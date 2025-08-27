@@ -22,4 +22,9 @@ export class Login implements OnInit{
     })
   }
 
+login():void{
+  let username = this.loginForm.value.username;
+  let password = this.loginForm.value.password;
+}
+
 }
