@@ -7,7 +7,29 @@
         </mat-card-header>
         <mat-divider></mat-divider>
         <mat-card-content>
-            Estudiantes
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Código</th>
+                        <th>Programa ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (estudiante of estudiantes; track estudiante.id) {
+                    <tr>
+                        <td>{{ estudiante.id }}</td>
+                        <td>{{ estudiante.nombres }}</td>
+                        <td>{{ estudiante.apellidos }}</td>
+                        <td>{{ estudiante.codigo }}</td>
+                        <td>{{ estudiante.programaId }}</td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
         </mat-card-content>
     </mat-card>
 </div>
