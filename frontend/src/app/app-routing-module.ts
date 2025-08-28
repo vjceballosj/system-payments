@@ -11,6 +11,7 @@ import { Profile } from './profile/profile';
 import { Estudiantes } from './estudiantes/estudiantes';
 import { AuthGuard } from './guards/auth-guard';
 import { AuthorizationGuard } from './guards/authorization.guard';
+import { EstudianteDetails } from './estudiante-details/estudiante-details';
 
 const routes: Routes = [
   { path: "", component: Login },
@@ -31,7 +32,8 @@ const routes: Routes = [
         path: "loadPagos", component: LoadPagos,
         canActivate: [AuthorizationGuard], data:{roles: ['ADMIN']}
        },
-      { path: "profile", component: Profile }
+      { path: "profile", component: Profile },
+      { path: "estudiante-detalles/:codigo", component: EstudianteDetails }
     ]
   },
 ];
