@@ -61,7 +61,15 @@
                     <th mat-header-cell *matHeaderCellDef>Programa ID</th>
                     <td mat-cell *matCellDef="let estudiante">{{ estudiante.programaId }}</td>
                 </ng-container>
-                
+                <ng-container matColumnDef="pagos">
+                    <th mat-header-cell *matHeaderCellDef>Pagos</th>
+                    <td mat-cell *matCellDef="let estudiante">
+                        <button (click)="listarPagosDeEstudiante(estudiante)" mat-raised-button color="primary">
+                            Pagos
+                        </button>
+                    </td>
+                </ng-container>
+
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>

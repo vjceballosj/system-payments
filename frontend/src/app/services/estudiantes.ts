@@ -8,15 +8,19 @@ import { environment } from '../../environments/environment.development';
   providedIn: 'root'
 })
 export class EstudianteService {
-  
-  constructor(private http:HttpClient){}
 
-  public getAllPagos():Observable<Array<Pago>>{
+  constructor(private http: HttpClient) { }
+
+  public getAllPagos(): Observable<Array<Pago>> {
     return this.http.get<Array<Pago>>(`${environment.backendHost}/pagos`);
   }
 
-  public getAllEstudiantes():Observable<Array<Estudiante>>{
+  public getAllEstudiantes(): Observable<Array<Estudiante>> {
     return this.http.get<Array<Estudiante>>(`${environment.backendHost}/estudiantes`);
+  }
+
+  public getPagosDeEstudiante(codigo: string): Observable<Array<Pago>> {
+    return this.http.get<Array<Pago>>(`${environment.backendHost}/estudiantes/${codigo}/pagos`);
   }
 }
 

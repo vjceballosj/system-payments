@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Estudiante } from '../models/estudiantes.models';
 import { EstudianteService } from '../services/estudiantes';
 import { MatTableDataSource } from '@angular/material/table';
+import { Route, Router } from '@angular/router';
 
 
 @Component({
@@ -14,9 +15,9 @@ export class Estudiantes implements OnInit {
 
   estudiantes!: Array<Estudiante>;
   estudiantesDataSource!: MatTableDataSource<Estudiante>;
-  displayedColumns: string[] = ['id','nombres','apellidos','codigo','programaId'];
+  displayedColumns: string[] = ['id','nombres','apellidos','codigo','programaId','pagos'];
 
-  constructor(private estudianteService: EstudianteService) { }
+  constructor(private estudianteService: EstudianteService, private router:Router) { }
 
   ngOnInit(): void {
     this.estudianteService.getAllEstudiantes().subscribe({
@@ -28,5 +29,9 @@ export class Estudiantes implements OnInit {
         console.log(err);
       }
     })
+  }
+
+  listarPagosDeEstudiante(estudiante:Estudiante){
+    this.router.navigateByUrl(`/admin/estudiante-detalles/${estudiante.codigo}`)
   }
 }
