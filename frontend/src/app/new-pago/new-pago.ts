@@ -14,6 +14,7 @@ export class NewPago implements OnInit {
   pagoFormGroup!: FormGroup;
   codigoEstudiante!: string;
   tiposPagos: string[] = [];
+  pdfFileUrl!: string;
 
   constructor(private fb:FormBuilder, private activatedRouter:ActivatedRoute){
 
@@ -35,6 +36,28 @@ export class NewPago implements OnInit {
         codigoEstudiante: this.fb.control(this.codigoEstudiante),
         fileName: this.fb.control('')
       })
+  }
 
+  selectFile(event:any){
+    if(event.target.files.length > 0){
+      let file = event.target.file[0];
+      this.pagoFormGroup.patchValue({
+        fileSource: file,
+        fileName: file.name
+      });
+      this.pdfFileUrl = window.URL.createObjectURL(file);
+    }
+  }
+
+  guardarPago(){
+    let date:Date = new Date(this.pagoFormGroup.value.date);
+    let formattedDate = date.getDate()+"/"+(date.getMonth()+1)+'/'+date.getFullYear(); //DD/MM/YYYY
+
+    let formData = new FormData();
+    formData.set('date', formattedDate);
+    formData.set('cantidad', this.pagoFormGroup.value.cantidad);
+    formData.set('type', this.pagoFormGroup.value.type);
+    formData.set('codigoEstudiante', this.pagoFormGroup.value.codigoEstudiante);
+    formData.set('file', this.pagoFormGroup.value.fileSource);
   }
 }
