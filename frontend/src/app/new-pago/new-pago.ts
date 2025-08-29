@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PaymentType } from '../models/estudiantes.models';
+import { EstudianteService } from '../services/estudiantes';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-new-pago',
@@ -16,7 +18,7 @@ export class NewPago implements OnInit {
   tiposPagos: string[] = [];
   pdfFileUrl!: string;
 
-  constructor(private fb:FormBuilder, private activatedRouter:ActivatedRoute){
+  constructor(private fb:FormBuilder, private activatedRouter:ActivatedRoute, private estudianteService:EstudianteService){
 
   }
 
@@ -59,5 +61,22 @@ export class NewPago implements OnInit {
     formData.set('type', this.pagoFormGroup.value.type);
     formData.set('codigoEstudiante', this.pagoFormGroup.value.codigoEstudiante);
     formData.set('file', this.pagoFormGroup.value.fileSource);
+
+    this.estudianteService.guardarPago(formData).subscribe({
+      next:value => {
+        Swal.fire({
+          title: 'Pago Guradado',
+          text: "El pago ha sido registrado con éxito",
+          icon: "success"
+        });
+      },
+      error: err => {
+        Swal.fire({
+          icon: "error",
+          title: 'Error',
+          text: "Ha ocurrido un error al registrar el pago"
+        });
+      }
+    })
   }
 }
