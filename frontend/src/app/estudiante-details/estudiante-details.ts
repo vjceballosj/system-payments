@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pago } from '../models/estudiantes.models';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EstudianteService } from '../services/estudiantes';
 
 @Component({
@@ -10,7 +10,7 @@ import { EstudianteService } from '../services/estudiantes';
   templateUrl: './estudiante-details.html',
   styleUrl: './estudiante-details.css'
 })
-export class EstudianteDetails implements OnInit{
+export class EstudianteDetails implements OnInit {
 
   estudianteCodigo!: string;
   pagosEstudiante!: Array<Pago>;
@@ -18,7 +18,7 @@ export class EstudianteDetails implements OnInit{
 
   public displayedColumns = ['id', 'fecha', 'cantidad', 'type', 'status', 'nombres'];
 
-  constructor(private activatedRoute: ActivatedRoute, private estudiantesService: EstudianteService) {
+  constructor(private activatedRoute: ActivatedRoute, private estudiantesService: EstudianteService, private router: Router) {
 
   }
 
@@ -33,5 +33,9 @@ export class EstudianteDetails implements OnInit{
         console.log(err);
       }
     })
+  }
+
+  agregarPago() {
+    this.router.navigateByUrl(`admin/new-pago/${this.estudianteCodigo}`);
   }
 }

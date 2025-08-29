@@ -30,6 +30,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { EstudianteDetails } from './estudiante-details/estudiante-details';
 import { NewPago } from './new-pago/new-pago';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -62,7 +65,10 @@ import { NewPago } from './new-pago/new-pago';
     MatTableModule,
     HttpClientModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSelectModule
   ],
   providers: [AuthGuard, AuthorizationGuard],
   bootstrap: [App]
