@@ -22,6 +22,10 @@ export class EstudianteService {
   public getPagosDeEstudiante(codigo: string): Observable<Array<Pago>> {
     return this.http.get<Array<Pago>>(`${environment.backendHost}/estudiantes/${codigo}/pagos`);
   }
+
+  public guardarPago(formData: any): Observable<Pago> {
+    return this.http.post<Pago>(`${environment.backendHost}/pagos`, formData)
+  }
 }
 
 
