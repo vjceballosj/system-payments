@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   selector: 'app-new-pago',
   standalone: false,
   templateUrl: './new-pago.html',
-  styleUrl: './new-pago.css'
+  styleUrls: ['./new-pago.css']
 })
 export class NewPago implements OnInit {
 
@@ -18,31 +18,36 @@ export class NewPago implements OnInit {
   tiposPagos: string[] = [];
   pdfFileUrl!: string;
 
-  constructor(private fb:FormBuilder, private activatedRouter:ActivatedRoute, private estudianteService:EstudianteService){
-
-  }
+  constructor(
+    private fb: FormBuilder,
+    private activatedRouter: ActivatedRoute,
+    private estudianteService: EstudianteService
+  ) {}
 
   ngOnInit(): void {
-      for(let elt in PaymentType){
-        let value = PaymentType[elt];
-        if(typeof value == 'string'){
-          this.tiposPagos.push(value);
-        }
+    // Cargar enum PaymentType como lista de strings
+    for (let elt in PaymentType) {
+      let value = PaymentType[elt];
+      if (typeof value === 'string') {
+        this.tiposPagos.push(value);
       }
+    }
 
-      this.codigoEstudiante = this.activatedRouter.snapshot.params['codigoEstudiante'];
-      this.pagoFormGroup =  this.fb.group({
-        date: this.fb.control(''),
-        cantidad: this.fb.control(''),
-        type: this.fb.control(''),
-        codigoEstudiante: this.fb.control(this.codigoEstudiante),
-        fileName: this.fb.control('')
-      })
+    this.codigoEstudiante = this.activatedRouter.snapshot.params['codigoEstudiante'];
+
+    this.pagoFormGroup = this.fb.group({
+      date: this.fb.control(''),
+      cantidad: this.fb.control(''),
+      type: this.fb.control(''),
+      codigoEstudiante: this.fb.control(this.codigoEstudiante),
+      fileName: this.fb.control(''),
+      fileSource: this.fb.control(null)
+    });
   }
 
-  selectFile(event:any){
-    if(event.target.files.length > 0){
-      let file = event.target.file[0];
+  selectFile(event: any) {
+    if (event.target.files.length > 0) {
+      let file = event.target.files[0];
       this.pagoFormGroup.patchValue({
         fileSource: file,
         fileName: file.name
@@ -51,9 +56,9 @@ export class NewPago implements OnInit {
     }
   }
 
-  guardarPago(){
-    let date:Date = new Date(this.pagoFormGroup.value.date);
-    let formattedDate = date.getDate()+"/"+(date.getMonth()+1)+'/'+date.getFullYear(); //DD/MM/YYYY
+  guardarPago() {
+    let date: Date = new Date(this.pagoFormGroup.value.date);
+    let formattedDate = date.toISOString().split('T')[0];  // convertir a yyyy-MM-dd
 
     let formData = new FormData();
     formData.set('date', formattedDate);
@@ -63,9 +68,9 @@ export class NewPago implements OnInit {
     formData.set('file', this.pagoFormGroup.value.fileSource);
 
     this.estudianteService.guardarPago(formData).subscribe({
-      next:value => {
+      next: value => {
         Swal.fire({
-          title: 'Pago Guradado',
+          title: 'Pago Guardado',
           text: "El pago ha sido registrado con éxito",
           icon: "success"
         });
@@ -77,6 +82,6 @@ export class NewPago implements OnInit {
           text: "Ha ocurrido un error al registrar el pago"
         });
       }
-    })
+    });
   }
 }

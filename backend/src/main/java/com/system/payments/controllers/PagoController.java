@@ -75,7 +75,13 @@ public class PagoController {
     }
 
     @PostMapping(path = "/pagos", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public Pago savePay(@RequestParam("file") MultipartFile file, double cantidad, TypePago type, LocalDate date, String codigoEstudiante) throws IOException {
+    public Pago savePay(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam(cantidad) double cantidad,
+            @RequestParam("type") TypePago type,
+            @RequestParam("date") LocalDate date,
+            @RequestParam("codigoEstudiante") String codigoEstudiante
+    ) throws IOException {
         return pagoService.savePago(file, cantidad, type,date, codigoEstudiante);
     }
 
